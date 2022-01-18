@@ -1,0 +1,12 @@
+import express from "express";
+import * as path from "path";
+import __rootDirName from "./rootDirectory.js";
+import dotenv from "dotenv";
+import router from "./routes/router.js";
+dotenv.config();
+const app = express();
+app.set("view engine", "ejs");
+app.set("views", path.join(__rootDirName, "views"));
+app.use(express.static(path.join(__rootDirName, "..", "public")));
+app.use(router);
+app.listen(process.env.PORT);
