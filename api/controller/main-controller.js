@@ -31,7 +31,7 @@ export const redirectURL = async (req, res, next) => {
     throw error;
   } catch (err) {
     if (!err.statusCode) {
-      statusCode = 500;
+      err.statusCode = 500;
     }
     next(err);
   }

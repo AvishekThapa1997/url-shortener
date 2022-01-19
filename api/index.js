@@ -5,6 +5,7 @@ import * as fs from "fs";
 import * as path from "path";
 import mainRouter from "./routes/main-router.js";
 import * as mainController from "./controller/main-controller.js";
+import get404 from "./controller/404.js";
 import __rootDirName from "./rootDirectory.js";
 import helmet from "helmet";
 import sequelize from "./utils/db/dbSetup.js";
@@ -36,6 +37,7 @@ app.use((err, req, res, next) => {
     message: err.message,
   });
 });
+app.use(get404);
 sequelize.sync().then(() => {
   app.listen(process.env.PORT);
 });
